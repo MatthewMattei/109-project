@@ -8,6 +8,8 @@ the gemini-pro model api
 By: Matthew Mattei
 Date: 3/14/24
 Credits: ChatGPT was used for planning and writing elements of the code in this file
+and the unigram_freq.csv dataset used in this file was uploaded and made
+publically availabe by Rachel Tatman on Kaggle
 """
 
 # Imports
