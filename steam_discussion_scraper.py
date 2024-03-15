@@ -9,12 +9,12 @@ Credits: ChatGPT was used for planning and writing elements of the code in this 
 
 # Imports
 from bs4 import BeautifulSoup
+from collections import Counter
 import csv
 import re
 import requests
-from collections import Counter
 
-REMOVE_EXTRA_CHARS_RE = r'[\[\]\n\r\t?\".,\/#!$%\^&\*;:{}=\-_`~()\[\]]'
+REMOVE_EXTRA_CHARS_RE = r'[\[\]\n\r\t?".,\/#!$%^&*;:{}=_`~()\[\]-]+'
 
 def url_to_soup(url: str):
     """
@@ -141,7 +141,7 @@ def scrape_for_content(url: str, filter_non_responsive: bool = True):
 def combined_scrape(url: str, contents_filename: str = "words.csv", op_filename: str = "op.csv"):
     """
     Combines scrape_for_posts and scrape_for_content to scrape all discussion threads and posts for a Steam
-    game's "General Discussions".
+    game's "General Discussions" and writes all reply words found to a csv.
     Example of a properly formatted URL: https://steamcommunity.com/app/1055540/discussions/0/
     Only the '1055540' portion should be different for a valid url.
     Filename must be a valid csv filename to write correctly.
@@ -161,6 +161,7 @@ def combined_scrape(url: str, contents_filename: str = "words.csv", op_filename:
 
         total_ops.append(op_content)
 
+        # words becomes a list of sublists where each sublist is a comment in a thread
         words = [content.split() for content in thread_content]
         for sublist in words:
             total_contents += sublist
@@ -178,4 +179,6 @@ def combined_scrape(url: str, contents_filename: str = "words.csv", op_filename:
             writer.writerow(op)
 
     print(str(len(total_contents)) + " words successfully scraped and writen to " + contents_filename)
+
+    # Returns dicts of words and their counts in each post
     return reply_contents
