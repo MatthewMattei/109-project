@@ -140,8 +140,8 @@ def calculate_p_value(posts: list, llm_responses: list, word: str):
         b_resample = [uni_sample[random.randint(0, len(uni_sample) - 1)] for i in range(m)]
         mua = sum(a_resample)/n
         mub = sum(b_resample)/m
-        diff = abs(mua - mub)
-        if diff >= observed_diff:
+        dif = abs(mua - mub)
+        if dif >= observed_diff:
             count += 1
     return [abs(sum(post_nums)/n - sum(llm_response_nums)/m), float(count / 10000)]
 
