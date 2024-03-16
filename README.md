@@ -1,6 +1,6 @@
 Hello there!
 
-This repo is the code and datasets utilized for my CS109 Project: Analyzing Keyword Indicators of LLM-Generated Content in Online Niche Communities.
+This repo contains the code and datasets utilized for my CS109 Project: Analyzing Keyword Indicators of LLM-Generated Content in Online Niche Communities.
 
 A brief overview of the repo:
 The py files are all of the code utilized in this repo. They produced each of the json and csv files, which are primarily stored in the repo
